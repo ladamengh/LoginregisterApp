@@ -1,6 +1,7 @@
 package com.example.loginregister
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -17,16 +18,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var IMyService:INodeJS
+    // init API
+    val retrofit = RetroFitClient.getInstance()
+    var IMyService = retrofit.create(INodeJS::class.java)
+
     internal var disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // init API
-         val retrofit = RetroFitClient.getInstance()
-         var IMyService = retrofit.create(INodeJS::class.java)
 
         login_button.setOnClickListener {
             loginUser(edit_email.text.toString(), password.text.toString())
@@ -48,6 +48,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loginUser(email: String, password: String) {
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_LONG).show()
+            return
+        }
+
         disposables.addAll(IMyService.loginUser(email, password)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
