@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LoginRegister</string>
+    <string name="example_of_using_nodejs">Example of using NodeJS</string>
+    <string name="email_hint">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="welcome">Welcome</string>
+    <string name="name_hint">Enter your name</string>
+</resources>
