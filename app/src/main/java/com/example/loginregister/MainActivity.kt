@@ -1,13 +1,14 @@
 package com.example.loginregister
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.loginregister.retrofit.INodeJS
-import com.example.loginregister.retrofit.RetroFitClient
+import com.example.loginregister.API.INodeJS
+import com.example.loginregister.API.RetroFitClient
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog
 import com.rengwuxian.materialedittext.MaterialEditText
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -62,8 +63,10 @@ class MainActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { message ->
-                if (message.contains("encrypted_password"))
+                if (message.contains("encrypted_password")) {
                     Toast.makeText(this, "Login success", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, UserProfileActivity::class.java))
+                }
                 else
                     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
             })

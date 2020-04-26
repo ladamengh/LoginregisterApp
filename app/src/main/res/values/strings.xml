@@ -7,4 +7,10 @@
     <string name="login">Login</string>
     <string name="welcome">Welcome</string>
     <string name="name_hint">Enter your name</string>
+    <string name="username">Username</string>
+    <string name="there_will_be_something_someday">There will be something someday</string>
+    <string name="search_for_courses_in_the_future">Search (for courses in the future)</string>
+    <string name="txt_title">Title</string>
+    <string name="description">Description</string>
+    <string name="image_of_course">Image of Course</string>
 </resources>
