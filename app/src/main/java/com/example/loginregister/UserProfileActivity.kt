@@ -16,12 +16,14 @@ class UserProfileActivity: AppCompatActivity() {
     var IMyService = retrofit.create(INodeJS::class.java)
 
     internal var disposables = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
 
-        something_button.setOnClickListener {
+        search_for_users_button.setOnClickListener {
             startActivity(Intent(this, SearchActivity::class.java))
+            finish()
         }
     }
 }
